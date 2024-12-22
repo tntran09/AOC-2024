@@ -86,4 +86,17 @@ def part1():
             diagonal_length = 0
     print(sum)
 
-    
+def part2():
+    lines = [line.strip() for line in fileinput.input(files="input/test_4.txt")]
+    sum = 0
+    i = 1
+    while i < len(lines) - 1:
+        j = 0
+        while j != -1:
+            j = lines[i].find('A', j + 1)
+            if j != -1 and j < len(lines[i]) - 1:
+                corners = [lines[i - 1][j - 1], lines[i - 1][j + 1], lines[i + 1][j - 1], lines[i + 1][j + 1]]
+                if corners == ['M','M','S','S'] or corners == ['M','S','M','S'] or corners == ['S','M','S','M'] or corners == ['S','S','M','M']:
+                    sum += 1
+        i += 1
+    print(sum)
